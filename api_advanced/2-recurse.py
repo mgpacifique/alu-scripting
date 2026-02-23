@@ -15,7 +15,9 @@ def recurse(subreddit, hot_list=None, after=None):
     if after is not None:
         url += "&after={}".format(after)
 
-    headers = {"User-Agent": "alu-scripting:api_advanced:v0.1 (by /u/alu_student)"}
+    headers = {
+        "User-Agent": "alu-scripting:api_advanced:v0.1 (by /u/alu_student)"
+    }
     response = requests.get(url, headers=headers, allow_redirects=False)
 
     if response.status_code != 200:

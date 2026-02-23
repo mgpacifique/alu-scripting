@@ -9,7 +9,9 @@ def number_of_subscribers(subreddit):
     Returns 0 if the subreddit is invalid or the request fails.
     """
     url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
-    headers = {"User-Agent": "alu-scripting:api_advanced:v0.1 (by /u/alu_student)"}
+    headers = {
+        "User-Agent": "alu-scripting:api_advanced:v0.1 (by /u/alu_student)"
+    }
     response = requests.get(url, headers=headers, allow_redirects=False)
 
     if response.status_code != 200:

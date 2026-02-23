@@ -1,9 +1,10 @@
 #!/usr/bin/python3
-"""Recursively queries Reddit API and counts keyword occurrences in hot titles."""
+"""Recursively queries Reddit API, counts keyword occurrences in hot titles."""
 import requests
 
 
-def count_words(subreddit, word_list, word_counts=None, totals=None, after=None):
+def count_words(subreddit, word_list, word_counts=None,
+                totals=None, after=None):
     """Recursively query Reddit API and print sorted keyword counts.
 
     Counts are case-insensitive and based on exact word matches (java. does not
@@ -24,7 +25,9 @@ def count_words(subreddit, word_list, word_counts=None, totals=None, after=None)
     if after is not None:
         url += "&after={}".format(after)
 
-    headers = {"User-Agent": "alu-scripting:api_advanced:v0.1 (by /u/alu_student)"}
+    headers = {
+        "User-Agent": "alu-scripting:api_advanced:v0.1 (by /u/alu_student)"
+    }
     response = requests.get(url, headers=headers, allow_redirects=False)
 
     if response.status_code != 200:
