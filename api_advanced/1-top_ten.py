@@ -10,7 +10,7 @@ def top_ten(subreddit):
     """
     url = "https://www.reddit.com/r/{}/hot.json?limit=10".format(subreddit)
     headers = {
-        "User-Agent": "alu-scripting:api_advanced:v0.1 (by /u/alu_student)"
+        "User-Agent": "linux:alu_scripting:v1.0 (by /u/mgpacifique)"
     }
     response = requests.get(url, headers=headers, allow_redirects=False)
 
@@ -19,7 +19,11 @@ def top_ten(subreddit):
         return
 
     data = response.json()
-    posts = data.get("data", {}).get("children", [])
+    posts = data.get("data", {}).get("children")
+
+    if posts is None:
+        print(None)
+        return
 
     for post in posts:
         print(post.get("data", {}).get("title"))

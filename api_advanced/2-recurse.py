@@ -16,7 +16,7 @@ def recurse(subreddit, hot_list=None, after=None):
         url += "&after={}".format(after)
 
     headers = {
-        "User-Agent": "alu-scripting:api_advanced:v0.1 (by /u/alu_student)"
+        "User-Agent": "linux:alu_scripting:v1.0 (by /u/mgpacifique)"
     }
     response = requests.get(url, headers=headers, allow_redirects=False)
 
@@ -24,9 +24,9 @@ def recurse(subreddit, hot_list=None, after=None):
         return None
 
     data = response.json().get("data", {})
-    posts = data.get("children", [])
+    posts = data.get("children")
 
-    if not posts:
+    if posts is None or len(posts) == 0:
         return hot_list if hot_list else None
 
     for post in posts:
